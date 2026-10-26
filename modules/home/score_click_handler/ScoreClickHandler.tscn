@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3fgbnmwbmqps"]
+
+[ext_resource type="Script" uid="uid://bbpborip3t7" path="res://modules/home/score_click_handler/score_click_handler.gd" id="1_kfw4c"]
+
+[node name="ScoreClickHandler" type="Button" unique_id=1593545788]
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+script = ExtResource("1_kfw4c")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

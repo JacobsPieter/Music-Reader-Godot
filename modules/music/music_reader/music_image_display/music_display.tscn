@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://du56lrg2b1ndu"]
+
+[ext_resource type="Script" uid="uid://d3b3bsg1kkqol" path="res://modules/music/music_reader/music_image_display/music_display.gd" id="1_ewayu"]
+
+[node name="MusicDisplay" type="Control" unique_id=510292664]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ewayu")
+
+[node name="RenderedPageDisplayContainer" type="PanelContainer" parent="." unique_id=442435179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RenderedPageDisplay" type="TextureRect" parent="RenderedPageDisplayContainer" unique_id=2052935530]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

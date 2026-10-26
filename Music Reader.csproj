@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>MusicReader</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PDFtoImage" Version="5.4.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(GodotTargetPlatform)' == 'android' ">
+    <PackageReference Include="bblanchon.PDFium.Android" Version="152.0.7961" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Android" Version="4.150.1" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(GodotTargetPlatform)' == 'android' ">
+    <AssetTargetFallback>$(AssetTargetFallback);net9.0-android35.0</AssetTargetFallback>
+  </PropertyGroup>
+</Project>

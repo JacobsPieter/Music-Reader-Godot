@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://d24oeh6cytl4k"]
+
+[ext_resource type="Script" uid="uid://j75yvgjg225" path="res://modules/home/home_screen.gd" id="1_vgc2r"]
+[ext_resource type="PackedScene" uid="uid://bdxlnibr22dw8" path="res://modules/home/score_selection_widget/ScoreSelectionWidget.tscn" id="2_opbv2"]
+[ext_resource type="Script" uid="uid://bueml2pvy8om3" path="res://modules/home/score_selection_widget/score_selection_widget.gd" id="3_m1t5v"]
+
+[node name="HomeScreen" type="Control" unique_id=952616913]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_vgc2r")
+
+[node name="WidgetscrollContainer" type="ScrollContainer" parent="." unique_id=2107570830]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HomeScreenWidgetsContainer" type="VBoxContainer" parent="WidgetscrollContainer" unique_id=657774785]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RefreshHomeScreenButton" type="Button" parent="WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2051765171]
+layout_mode = 2
+text = "Refresh"
+
+[node name="ScoreSelectionWidget" parent="WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2013044719 instance=ExtResource("2_opbv2")]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_m1t5v")
+
+[connection signal="pressed" from="WidgetscrollContainer/HomeScreenWidgetsContainer/RefreshHomeScreenButton" to="." method="_on_refresh_home_screen_button_pressed"]

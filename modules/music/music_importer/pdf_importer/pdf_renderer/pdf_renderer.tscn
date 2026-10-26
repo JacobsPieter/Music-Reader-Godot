@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bkpfc42o62vb0"]
+
+[ext_resource type="Script" uid="uid://bm2v08ec00rot" path="res://modules/music/music_importer/pdf_importer/pdf_renderer/PdfRenderer.cs" id="1_12ft5"]
+
+[node name="PDFRenderer" type="Node" unique_id=559690964]
+script = ExtResource("1_12ft5")

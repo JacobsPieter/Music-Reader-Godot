@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music Reader", "Music Reader.csproj", "{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{8B58701E-5FBD-4E94-B36A-8FA3829D5C35}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

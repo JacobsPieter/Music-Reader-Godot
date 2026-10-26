@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bdxlnibr22dw8"]
+
+[ext_resource type="Script" uid="uid://bueml2pvy8om3" path="res://modules/home/score_selection_widget/score_selection_widget.gd" id="1_13p2n"]
+
+[node name="ScoreWidgetContainer" type="VBoxContainer" unique_id=2013044719]
+size_flags_vertical = 3
+script = ExtResource("1_13p2n")
+
+[node name="ScoreImportButton" type="Button" parent="." unique_id=330004811]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add Score +"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=401247125]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoresContainer" type="HBoxContainer" parent="ScrollContainer" unique_id=1044476527]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="ScoreImportButton" to="." method="_on_score_import_button_pressed"]
