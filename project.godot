@@ -14,7 +14,9 @@ config/name="Music Reader"
 run/main_scene="uid://d24oeh6cytl4k"
 config/features=PackedStringArray("4.7", "C#", "Mobile")
 run/low_processor_mode=true
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.17750001, 0.21012503, 0.25, 1)
+boot_splash/show_image=false
+config/icon="uid://btdowwtaoaywe"
 
 [autoload]
 

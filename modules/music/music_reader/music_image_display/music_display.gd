@@ -37,17 +37,19 @@ func render_music():
 
 func move_page(direction: int):
 	if direction > 0:
-		if current_page[0] + direction >= len(rendered_pages) and not page_flip:
+		if current_page[1] + direction >= len(rendered_pages):
 			return
+		if page_flip:
+			change_displayed_page(current_page[0], current_page[1] + direction)
+		else:
+			change_displayed_page(current_page[0] + direction, current_page[1])
 	if direction < 0:
-		if current_page[1] == 0:
+		if current_page[0] == 0:
 			return
-	if page_flip:
-		@warning_ignore("narrowing_conversion")
-		change_displayed_page(current_page[0], current_page[1] + direction)
-	if not page_flip:
-		@warning_ignore("narrowing_conversion")
-		change_displayed_page(current_page[0] + direction, current_page[1])
+		if page_flip:
+			change_displayed_page(current_page[0] + direction, current_page[1])
+		else:
+			change_displayed_page(current_page[0], current_page[1] + direction)
 	page_flip = not page_flip
 
 

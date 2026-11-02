@@ -5,6 +5,7 @@
 [node name="ScoreClickHandler" type="Button" unique_id=1593545788]
 offset_right = 8.0
 offset_bottom = 8.0
+mouse_filter = 1
 flat = true
 script = ExtResource("1_kfw4c")
 
