@@ -6,9 +6,18 @@ extends Control
 @onready var background: PanelContainer = %Background
 @onready var renderer := %PDFRenderer
 
+@onready var score_name_dialog := %ScoreNameDialog
+@onready var name_entering_field := %NameEnter
+
 @onready var import_directory = Settings.import_directory
 @onready var inner_rendered_page_dir = Settings.inner_rendered_page_directory
 
+
+
+
+var path: String = ""
+var filename: String = ""
+var group_name_to_use: String = ""
 
 signal pdf_loaded(group_name: String, files: PackedStringArray)
 
@@ -44,15 +53,25 @@ func _process(_delta: float) -> void:
 
 
 
-func _on_file_dialog_file_selected(path: String) -> void:
-	var filename = path.uri_decode().get_file()
-	var group_name = filename.get_basename()
+func _on_file_dialog_file_selected(local_path: String) -> void:
+	path = local_path
+	filename = path.uri_decode().get_file()
+	group_name_to_use = filename.get_basename()
+	
+	score_name_dialog.visible = true
+	name_entering_field.placeholder_text = group_name_to_use
+
+
+func _on_accept_pressed() -> void:
+	group_name_to_use = name_entering_field.text
+	score_name_dialog.visible = false
+
 	var source_file = FileAccess.open(path, FileAccess.READ)
 	if not source_file:
 		print('Failed to read the selected file: ', FileAccess.get_open_error())
 		return
 	
-	var dest_path = import_directory + group_name
+	var dest_path = import_directory + group_name_to_use
 	var dest_file_path = dest_path + "/" + filename
 	
 	var dir = DirAccess.open('user://')
@@ -78,7 +97,7 @@ func _on_file_dialog_file_selected(path: String) -> void:
 	if not rendered_dir.dir_exists(dest_path + inner_rendered_page_dir):
 		rendered_dir.make_dir_recursive(dest_path + inner_rendered_page_dir)
 
-	convert_pdf(dest_file_path, dest_path + inner_rendered_page_dir, group_name)
+	convert_pdf(dest_file_path, dest_path + inner_rendered_page_dir, group_name_to_use)
 
 
 func _on_conversion_finished(group_name: String, output_dir: String, files: PackedStringArray) -> void:
@@ -95,3 +114,11 @@ func _on_conversion_failed(group_name: String, error: String) -> void:
 func _on_page_saved(group_name: String, page: int, total_pages: int) -> void:
 	# TODO: update a progress bar
 	print("%s: page %d/%d" % [group_name, page, total_pages])
+
+
+func _on_file_dialog_canceled() -> void:
+	queue_free()
+
+
+func _on_cancel_pressed() -> void:
+	queue_free()

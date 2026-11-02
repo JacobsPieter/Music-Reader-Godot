@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cgd38i2ny2cpq"]
+
+[ext_resource type="PackedScene" uid="uid://d3fgbnmwbmqps" path="res://modules/home/score_selection_widget/score_click_handler/ScoreClickHandler.tscn" id="1_4fg8q"]
+[ext_resource type="Script" uid="uid://cmh8twaks7gdl" path="res://modules/home/score_selection_widget/score_info_card/score_info_card.gd" id="1_gfwip"]
+
+[node name="ScoreInfoCard" type="Control" unique_id=747115818]
+custom_minimum_size = Vector2(124, 219)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 1
+script = ExtResource("1_gfwip")
+
+[node name="BackPanel" type="PanelContainer" parent="." unique_id=1304405877]
+custom_minimum_size = Vector2(124, 219)
+layout_mode = 1
+offset_right = 124.0
+offset_bottom = 219.0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="BackPanel" unique_id=481929907]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScoreDetails" type="VBoxContainer" parent="BackPanel/MarginContainer" unique_id=953748940]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BackPanel/MarginContainer/ScoreDetails" unique_id=1539989634]
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"SelectionCard"
+
+[node name="Panel" type="Panel" parent="BackPanel/MarginContainer/ScoreDetails/PanelContainer" unique_id=1593527578]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 141)
+custom_maximum_size = Vector2(100, 141)
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_type_variation = &"rounded_panel"
+
+[node name="Thumbnail" type="TextureRect" parent="BackPanel/MarginContainer/ScoreDetails/PanelContainer/Panel" unique_id=870673619]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(100, 141)
+custom_maximum_size = Vector2(100, 141)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -70.5
+offset_right = 50.0
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="BackPanel/MarginContainer/ScoreDetails" unique_id=920117204]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 50)
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreClickHandler" parent="BackPanel/MarginContainer" unique_id=1593545788 instance=ExtResource("1_4fg8q")]
+unique_name_in_owner = true
+layout_mode = 2

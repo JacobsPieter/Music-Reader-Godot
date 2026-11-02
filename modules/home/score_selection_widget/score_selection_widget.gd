@@ -1,10 +1,17 @@
-extends VBoxContainer
+extends Control
 
 @onready var score_click_handler = preload("uid://d3fgbnmwbmqps")
 @onready var music_display = preload("uid://du56lrg2b1ndu").instantiate()
-@onready var pdf_importer = preload("uid://dkguiekmumbs1").instantiate()
+@onready var pdf_importer_preload = preload("uid://dkguiekmumbs1")
+@onready var score_info_card = preload("uid://cgd38i2ny2cpq")
+
+
+var pdf_importer: Node
 
 @onready var imported_scores_container = %ScoresContainer
+
+signal score_selected(files: Array)
+
 
 
 func display_imported_scores():
@@ -32,6 +39,7 @@ func display_imported_scores():
 		print("Rendered pages path: ", rendered_path)
 
 		var files = DirAccess.get_files_at(rendered_path)
+		files.sort()
 		print("Files found: ", files)
 		
 		var files_with_paths = []
@@ -49,31 +57,13 @@ func display_imported_scores():
 			print("Failed to load image: ", thumbnail_path)
 			continue
 		
-		var back_panel = PanelContainer.new()
-		back_panel.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-		imported_scores_container.add_child(back_panel)
+		var new_card = score_info_card.instantiate()
+		new_card.score_group_name = dir.get_basename()
+		new_card.files = files_with_paths
+		new_card.thumbnail_texture = ImageTexture.create_from_image(thumbnail_image)
+		imported_scores_container.add_child(new_card)
+		new_card.clickregion.connect("score_selected", _on_score_selected)
 
-		var score_details = VBoxContainer.new()
-		back_panel.add_child(score_details)
-		
-		var clickregion = score_click_handler.instantiate()
-		clickregion.score_group_name = dir.get_basename()
-		clickregion.files = files_with_paths
-		back_panel.add_child(clickregion)
-		clickregion.connect("score_selected", _on_score_selected)
-		
-		var thumbnail = TextureRect.new()
-		thumbnail.texture = ImageTexture.create_from_image(thumbnail_image)
-		thumbnail.custom_minimum_size = Vector2(100, 141)
-		thumbnail.custom_maximum_size = Vector2(100, 141)
-		thumbnail.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
-		thumbnail.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
-		score_details.add_child(thumbnail)
-
-		var score_label = Label.new()
-		score_label.text = dir.get_basename()
-		score_details.add_child(score_label)
-	
 
 
 		print("Added score UI: ", dir)
@@ -92,16 +82,14 @@ func _process(delta: float) -> void:
 
 
 func _on_score_import_button_pressed() -> void:
+	pdf_importer = pdf_importer_preload.instantiate()
 	add_child(pdf_importer)
 	pdf_importer.connect("pdf_loaded", _on_pdf_loaded)
 
 func _on_pdf_loaded(group_name: String, files: PackedStringArray):
-	music_display.files = files
-	get_parent().add_child(music_display)
-	music_display.change_displayed_page(0)
+	score_selected.emit(files)
+	pdf_importer.queue_free()
 
 
-func _on_score_selected(group_name: String, files: Array) -> void:
-	music_display.files = files
-	get_parent().add_child(music_display)
-	music_display.change_displayed_page(0)
+func _on_score_selected(group_name: String, files: PackedStringArray) -> void:
+	score_selected.emit(files)

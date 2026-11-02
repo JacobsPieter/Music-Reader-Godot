@@ -23,21 +23,88 @@ access = 2
 filters = PackedStringArray("*.pdf")
 use_native_dialog = true
 
-[node name="Background" type="PanelContainer" parent="." unique_id=1565830023]
+[node name="PDFRenderer" parent="." unique_id=559690964 instance=ExtResource("3_s1s8n")]
 unique_name_in_owner = true
+
+[node name="ScoreNameDialog" type="Control" parent="." unique_id=1734518795]
+unique_name_in_owner = true
+propagate_maximum_size = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -37.5
+offset_right = 150.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="ScoreNameDialog" unique_id=1419367017]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_type_variation = &"PopupBackPanelContainer"
 
-[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1234593860]
+[node name="MarginContainer" type="MarginContainer" parent="ScoreNameDialog/PanelContainer" unique_id=935623856]
 layout_mode = 2
-color = Color(0.14012533, 0.14744279, 0.16787693, 1)
+theme_type_variation = &"PopupMarginContainer"
 
-[node name="PDFRenderer" parent="." unique_id=559690964 instance=ExtResource("3_s1s8n")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreNameDialog/PanelContainer/MarginContainer" unique_id=1152784015]
+layout_mode = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=1188610960]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderSmall"
+text = "Score Name"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Underline" type="HSeparator" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=1326167551]
+layout_mode = 2
+theme_type_variation = &"TitleUnderlineHSeperator"
+
+[node name="WarningLabel" type="Label" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=738439959]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"WarningLabel"
+text = "You can't change this later!"
+
+[node name="NameEnter" type="LineEdit" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=241140020]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+emoji_menu_enabled = false
+clear_button_enabled = true
+caret_blink = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer" unique_id=1334008600]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Cancel" type="Button" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2023019375]
+layout_mode = 2
+text = "Cancel"
+
+[node name="PanelContainer" type="PanelContainer" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1425976219]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PopupBackPanelContainer"
+
+[node name="Accept" type="Button" parent="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=182493451]
+layout_mode = 2
+text = "Accept"
+
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
 [connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="ScoreNameDialog/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Accept" to="." method="_on_accept_pressed"]

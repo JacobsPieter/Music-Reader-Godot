@@ -2,7 +2,7 @@ extends Button
 
 
 var score_group_name: String
-var files: Array
+var files: PackedStringArray
 
 signal score_selected(score_group_name, files)
 

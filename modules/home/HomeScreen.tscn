@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://j75yvgjg225" path="res://modules/home/home_screen.gd" id="1_vgc2r"]
 [ext_resource type="PackedScene" uid="uid://bdxlnibr22dw8" path="res://modules/home/score_selection_widget/ScoreSelectionWidget.tscn" id="2_opbv2"]
+[ext_resource type="PackedScene" uid="uid://du56lrg2b1ndu" path="res://modules/music/music_reader/music_image_display/music_display.tscn" id="4_m1t5v"]
 
 [node name="HomeScreen" type="Control" unique_id=952616913]
 layout_mode = 3
@@ -10,10 +11,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_vgc2r")
 
-[node name="WidgetscrollContainer" type="ScrollContainer" parent="." unique_id=2107570830]
+[node name="PageContainer" type="TabContainer" parent="." unique_id=862685709]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+tabs_position = 1
+
+[node name="Home" type="Control" parent="PageContainer" unique_id=302432360]
+propagate_maximum_size = true
+layout_mode = 2
+mouse_filter = 1
+metadata/_tab_index = 0
+metadata/_tab_name = ""
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PageContainer/Home" unique_id=1789705374]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,18 +43,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HomeScreenWidgetsContainer" type="VBoxContainer" parent="WidgetscrollContainer" unique_id=657774785]
+[node name="HBoxContainer" type="HBoxContainer" parent="PageContainer/Home/VBoxContainer" unique_id=2138483852]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PageContainer/Home/VBoxContainer/HBoxContainer" unique_id=2008703939]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PageContainer/Home/VBoxContainer/HBoxContainer" unique_id=714040116]
+layout_mode = 2
+
+[node name="WidgetscrollContainer" type="ScrollContainer" parent="PageContainer/Home/VBoxContainer" unique_id=2107570830]
+propagate_maximum_size = true
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HomeScreenWidgetsContainer" type="VBoxContainer" parent="PageContainer/Home/VBoxContainer/WidgetscrollContainer" unique_id=657774785]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="RefreshHomeScreenButton" type="Button" parent="WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2051765171]
-layout_mode = 2
-text = "Refresh"
-
-[node name="ScoreSelectionWidget" parent="WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2013044719 instance=ExtResource("2_opbv2")]
+[node name="ScoreSelectionWidget" parent="PageContainer/Home/VBoxContainer/WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2013044719 instance=ExtResource("2_opbv2")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[connection signal="pressed" from="WidgetscrollContainer/HomeScreenWidgetsContainer/RefreshHomeScreenButton" to="." method="_on_refresh_home_screen_button_pressed"]
+[node name="RefreshHomeScreenButton" type="Button" parent="PageContainer/Home/VBoxContainer/WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2051765171]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Refresh"
+
+[node name="MusicDisplay" parent="PageContainer" unique_id=510292664 instance=ExtResource("4_m1t5v")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = ""
+
+[connection signal="tab_changed" from="PageContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="score_selected" from="PageContainer/Home/VBoxContainer/WidgetscrollContainer/HomeScreenWidgetsContainer/ScoreSelectionWidget" to="." method="_on_score_selection_widget_score_selected"]
+[connection signal="score_selected" from="PageContainer/Home/VBoxContainer/WidgetscrollContainer/HomeScreenWidgetsContainer/ScoreSelectionWidget" to="PageContainer/MusicDisplay" method="_on_score_selection_widget_score_selected"]
+[connection signal="pressed" from="PageContainer/Home/VBoxContainer/WidgetscrollContainer/HomeScreenWidgetsContainer/RefreshHomeScreenButton" to="." method="_on_refresh_home_screen_button_pressed"]

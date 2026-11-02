@@ -22,6 +22,8 @@ Settings="*uid://bnuar24ywjtoa"
 
 [display]
 
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [dotnet]
@@ -30,7 +32,11 @@ project/assembly_name="Music Reader"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/StyleboxFancy/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://clafvs3ssxwje"
 
 [input]
 

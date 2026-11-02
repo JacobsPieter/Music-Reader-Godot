@@ -3,25 +3,68 @@
 [ext_resource type="Script" uid="uid://d3b3bsg1kkqol" path="res://modules/music/music_reader/music_image_display/music_display.gd" id="1_ewayu"]
 
 [node name="MusicDisplay" type="Control" unique_id=510292664]
+propagate_maximum_size = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_ewayu")
 
-[node name="RenderedPageDisplayContainer" type="PanelContainer" parent="." unique_id=442435179]
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=610581220]
+unique_name_in_owner = true
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+touch_dragger_enabled = true
 
-[node name="RenderedPageDisplay" type="TextureRect" parent="RenderedPageDisplayContainer" unique_id=2052935530]
+[node name="FirstPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=243553396]
 unique_name_in_owner = true
-z_index = 1
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="RenderedFirstPageDisplay" type="TextureRect" parent="VSplitContainer/FirstPageContainer" unique_id=2052935530]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
+
+[node name="SecondPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=910133447]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="RenderedSecondPageDisplay" type="TextureRect" parent="VSplitContainer/SecondPageContainer" unique_id=754594924]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VisibilityTimer" type="Timer" parent="." unique_id=837983439]
+unique_name_in_owner = true
+wait_time = 0.09
+one_shot = true
+ignore_time_scale = true
+
+[connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="dragged" from="VSplitContainer" to="." method="_on_v_split_container_dragged"]
+[connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
