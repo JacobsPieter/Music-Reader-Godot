@@ -92,7 +92,7 @@ func _on_item_rect_changed() -> void:
 		rendered_first_page_display.custom_minimum_size = Vector2(available_space.x, available_space.y)
 		rendered_second_page_display.custom_minimum_size = Vector2(available_space.x, available_space.y)
 	if not second_page_container == null:
-		second_page_container.set_deferred("scroll_vertical", size.y/2)
+		second_page_container.set_deferred("scroll_vertical", size.y/2 + splitter.split_offsets[0])
 
 
 func _on_v_split_container_dragged(offset: int) -> void:

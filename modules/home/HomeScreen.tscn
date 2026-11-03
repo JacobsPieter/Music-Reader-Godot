@@ -38,6 +38,8 @@ texture = ExtResource("2_m1t5v")
 
 [node name="Name" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer" unique_id=714040116]
 layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Music Reader"
 
 [node name="PageContainer" type="TabContainer" parent="VBoxContainer" unique_id=862685709]
 unique_name_in_owner = true
@@ -74,10 +76,10 @@ size_flags_vertical = 3
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=155932874]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="ScoreSelectionWidget" parent="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer/MarginContainer" unique_id=2013044719 instance=ExtResource("2_opbv2")]
 unique_name_in_owner = true
