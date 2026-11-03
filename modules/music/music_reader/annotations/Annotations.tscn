@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://cmk3xtn4nwfd8"]
+
+[ext_resource type="Script" uid="uid://b23it51i50vct" path="res://modules/music/music_reader/annotations/annotations.gd" id="1_ystmx"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ahevn"]
+
+[node name="Annotations" type="Control" unique_id=1804646480]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ystmx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1817462880]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=829271684]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer" unique_id=1684633399]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Brush Size"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BrushSizes" type="HSlider" parent="HBoxContainer/VBoxContainer" unique_id=1570351357]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+min_value = 0.5
+max_value = 15.0
+step = 0.5
+value = 5.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=161616353]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_type_variation = &"Spacer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=48049953]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2" unique_id=66511294]
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "Colour"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColourSelectors" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=1227574096]
+layout_mode = 2
+
+[node name="ColourButton1" type="Button" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=1570135521]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton2" type="Button" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=1139199437]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton3" type="Button" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=146865258]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton4" type="Button" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=1244722656]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="CustomColourButtonOverlay1" type="PanelContainer" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=1530501070]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"CustomColourButton"
+
+[node name="ColorPickerButton1" type="ColorPickerButton" parent="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay1" unique_id=2096111394]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"CustomColourButton"
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="CustomColourButtonOverlay2" type="PanelContainer" parent="HBoxContainer/VBoxContainer2/ColourSelectors" unique_id=1071752541]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"CustomColourButton"
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay2" unique_id=1844330736]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(40, 40)
+custom_maximum_size = Vector2(40, 40)
+layout_mode = 2
+theme_type_variation = &"CustomColourButton"
+button_group = SubResource("ButtonGroup_ahevn")
+
+[connection signal="color_changed" from="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay1/ColorPickerButton1" to="." method="_on_color_picker_button_1_color_changed"]
+[connection signal="popup_closed" from="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay1/ColorPickerButton1" to="." method="_on_color_picker_button_1_popup_closed"]
+[connection signal="color_changed" from="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay2/ColorPickerButton2" to="." method="_on_color_picker_button_2_color_changed"]
+[connection signal="popup_closed" from="HBoxContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay2/ColorPickerButton2" to="." method="_on_color_picker_button_2_popup_closed"]

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://du56lrg2b1ndu"]
 
 [ext_resource type="Script" uid="uid://d3b3bsg1kkqol" path="res://modules/music/music_reader/music_image_display/music_display.gd" id="1_ewayu"]
+[ext_resource type="PackedScene" uid="uid://cmk3xtn4nwfd8" path="res://modules/music/music_reader/annotations/Annotations.tscn" id="2_fk5yo"]
 
 [node name="MusicDisplay" type="Control" unique_id=510292664]
 propagate_maximum_size = true
@@ -15,18 +16,27 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_ewayu")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=610581220]
-unique_name_in_owner = true
-clip_contents = true
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1913224634]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Annotations" parent="VBoxContainer" unique_id=1804646480 instance=ExtResource("2_fk5yo")]
+z_index = 1
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer" unique_id=610581220]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
 touch_dragger_enabled = true
 
-[node name="FirstPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=243553396]
+[node name="FirstPageContainer" type="ScrollContainer" parent="VBoxContainer/VSplitContainer" unique_id=243553396]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -34,7 +44,7 @@ mouse_filter = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="RenderedFirstPageDisplay" type="TextureRect" parent="VSplitContainer/FirstPageContainer" unique_id=2052935530]
+[node name="RenderedFirstPageDisplay" type="TextureRect" parent="VBoxContainer/VSplitContainer/FirstPageContainer" unique_id=2052935530]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -42,7 +52,7 @@ size_flags_vertical = 3
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SecondPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=910133447]
+[node name="SecondPageContainer" type="ScrollContainer" parent="VBoxContainer/VSplitContainer" unique_id=910133447]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -50,7 +60,7 @@ mouse_filter = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="RenderedSecondPageDisplay" type="TextureRect" parent="VSplitContainer/SecondPageContainer" unique_id=754594924]
+[node name="RenderedSecondPageDisplay" type="TextureRect" parent="VBoxContainer/VSplitContainer/SecondPageContainer" unique_id=754594924]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -66,5 +76,5 @@ ignore_time_scale = true
 
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="dragged" from="VSplitContainer" to="." method="_on_v_split_container_dragged"]
+[connection signal="dragged" from="VBoxContainer/VSplitContainer" to="." method="_on_v_split_container_dragged"]
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]
