@@ -61,11 +61,6 @@ func _process(_delta: float) -> void:
 
 
 
-
-func _on_refresh_home_screen_button_pressed() -> void:
-	refresh_home_screen()
-
-
 func _on_tab_container_tab_changed(tab: int) -> void:
 	change_tab(tab)
 

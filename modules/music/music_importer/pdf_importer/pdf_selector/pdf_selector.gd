@@ -3,7 +3,6 @@ extends Control
 
 
 @onready var filedialog: FileDialog = %FileDialog
-@onready var background: PanelContainer = %Background
 @onready var renderer := %PDFRenderer
 
 @onready var score_name_dialog := %ScoreNameDialog

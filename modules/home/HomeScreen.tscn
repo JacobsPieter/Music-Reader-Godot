@@ -85,11 +85,6 @@ theme_override_constants/margin_bottom = 16
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="RefreshHomeScreenButton" type="Button" parent="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer" unique_id=2051765171]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Refresh"
-
 [node name="MusicDisplay" parent="VBoxContainer/PageContainer" unique_id=510292664 instance=ExtResource("4_m1t5v")]
 visible = false
 layout_mode = 2
@@ -99,4 +94,3 @@ metadata/_tab_name = ""
 [connection signal="tab_changed" from="VBoxContainer/PageContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="score_selected" from="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer/MarginContainer/ScoreSelectionWidget" to="." method="_on_score_selection_widget_score_selected"]
 [connection signal="score_selected" from="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer/MarginContainer/ScoreSelectionWidget" to="VBoxContainer/PageContainer/MusicDisplay" method="_on_score_selection_widget_score_selected"]
-[connection signal="pressed" from="VBoxContainer/PageContainer/Home/WidgetscrollContainer/HomeScreenWidgetsContainer/RefreshHomeScreenButton" to="." method="_on_refresh_home_screen_button_pressed"]
