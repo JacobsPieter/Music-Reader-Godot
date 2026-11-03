@@ -89,6 +89,7 @@ func _on_score_import_button_pressed() -> void:
 func _on_pdf_loaded(group_name: String, files: PackedStringArray):
 	score_selected.emit(files)
 	pdf_importer.queue_free()
+	display_imported_scores()
 
 
 func _on_score_selected(group_name: String, files: PackedStringArray) -> void:
