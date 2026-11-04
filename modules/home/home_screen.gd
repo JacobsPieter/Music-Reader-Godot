@@ -2,7 +2,6 @@ extends Control
 
 @onready var music_display = preload("uid://du56lrg2b1ndu").instantiate()
 
-@onready var refresh_home_screen_button = %RefreshHomeScreenButton
 @onready var score_selection = %ScoreSelectionWidget
 @onready var widgets_container = %HomeScreenWidgetsContainer
 @onready var page_container = %PageContainer
