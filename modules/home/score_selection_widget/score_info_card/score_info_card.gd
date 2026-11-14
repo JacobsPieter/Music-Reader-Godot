@@ -6,6 +6,7 @@ extends Control
 
 
 var score_group_name: String = ""
+var page_ids: PackedStringArray = []
 var files: PackedStringArray = []
 var thumbnail_texture: ImageTexture
 
@@ -13,6 +14,7 @@ var thumbnail_texture: ImageTexture
 func _ready() -> void:
 	clickregion.score_group_name = score_group_name
 	clickregion.files = files
+	clickregion.page_ids = page_ids
 	var new_textured_stylebox = thumbnail.get_theme_stylebox("panel").duplicate()
 	new_textured_stylebox.texture = thumbnail_texture
 	thumbnail.add_theme_stylebox_override("panel", new_textured_stylebox)

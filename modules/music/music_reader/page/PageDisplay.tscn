@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://de2bfo3xxxo2k"]
+
+[ext_resource type="Script" uid="uid://f6iacod4rr6e" path="res://modules/music/music_reader/page/page_display.gd" id="1_78lok"]
+
+[node name="PageDisplay" type="PanelContainer" unique_id=1500693161]
+propagate_maximum_size = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"Spacer"
+script = ExtResource("1_78lok")
+
+[node name="SheetMusicPage" type="TextureRect" parent="." unique_id=550042044]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BakedAnnotations" type="TextureRect" parent="." unique_id=843694811]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LiveAnnotations" type="TextureRect" parent="." unique_id=1480687693]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5

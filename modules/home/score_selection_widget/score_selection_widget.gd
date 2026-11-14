@@ -10,18 +10,19 @@ var pdf_importer: Node
 
 @onready var imported_scores_container = %ScoresContainer
 
-signal score_selected(files: Array)
+signal score_selected(files: Array, group_name, page_ids)
 
 
 
 func display_imported_scores():
 	print("display_imported_scores() called")
-	print("Import directory: ", Settings.import_directory)
+	print("Import directory: ", Settings.score_directory)
+	var page_ids: PackedStringArray = []
 	
 	for child in imported_scores_container.get_children():
 		child.queue_free()
 	
-	var dir_access = DirAccess.open(Settings.import_directory)
+	var dir_access = DirAccess.open(Settings.score_directory)
 
 	if dir_access == null:
 		print("ERROR: Could not open import directory")
@@ -33,13 +34,15 @@ func display_imported_scores():
 	for dir in directories:
 		print("Processing score: ", dir)
 
-		var rendered_path = Settings.import_directory.path_join(dir).path_join(
+		var rendered_path = Settings.score_directory.path_join(dir).path_join(
 			Settings.inner_rendered_page_directory
 		)
 		print("Rendered pages path: ", rendered_path)
 
 		var files = DirAccess.get_files_at(rendered_path)
 		files.sort()
+		for file in files:
+			page_ids.append(file.get_basename())
 		print("Files found: ", files)
 		
 		var files_with_paths = []
@@ -60,6 +63,7 @@ func display_imported_scores():
 		var new_card = score_info_card.instantiate()
 		new_card.score_group_name = dir.get_basename()
 		new_card.files = files_with_paths
+		new_card.page_ids = page_ids
 		new_card.thumbnail_texture = ImageTexture.create_from_image(thumbnail_image)
 		imported_scores_container.add_child(new_card)
 		new_card.clickregion.connect("score_selected", _on_score_selected)
@@ -86,11 +90,11 @@ func _on_score_import_button_pressed() -> void:
 	add_child(pdf_importer)
 	pdf_importer.connect("pdf_loaded", _on_pdf_loaded)
 
-func _on_pdf_loaded(group_name: String, files: PackedStringArray):
-	score_selected.emit(files)
+func _on_pdf_loaded(group_name: String, files: PackedStringArray, page_ids: PackedStringArray):
+	score_selected.emit(files, group_name, page_ids)
 	pdf_importer.queue_free()
 	display_imported_scores()
 
 
-func _on_score_selected(group_name: String, files: PackedStringArray) -> void:
-	score_selected.emit(files)
+func _on_score_selected(group_name: String, files: PackedStringArray, page_ids: PackedStringArray) -> void:
+	score_selected.emit(files, group_name, page_ids)

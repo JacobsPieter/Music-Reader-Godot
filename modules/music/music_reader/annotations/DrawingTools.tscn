@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://cmk3xtn4nwfd8"]
+
+[ext_resource type="Script" uid="uid://b23it51i50vct" path="res://modules/music/music_reader/annotations/drawing_tools.gd" id="1_ylt0q"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ylt0q"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ahevn"]
+
+[node name="DrawingTools" type="PanelContainer" unique_id=1995141852]
+offset_right = 453.0
+offset_bottom = 37.0
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"Spacer"
+script = ExtResource("1_ylt0q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1817462880]
+layout_mode = 2
+
+[node name="EditToggleButton" type="CheckButton" parent="HBoxContainer" unique_id=1639665365]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Annotate"
+icon = SubResource("PlaceholderTexture2D_ylt0q")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=319952555]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_type_variation = &"Spacer"
+
+[node name="ShowButton" type="Button" parent="HBoxContainer" unique_id=857901472]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Tools"
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer" unique_id=1703243833]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_type_variation = &"Spacer"
+
+[node name="EditingSettingsContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=440993650]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/EditingSettingsContainer" unique_id=829271684]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer" unique_id=1684633399]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Brush Size"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BrushSizes" type="HSlider" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer" unique_id=1570351357]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+custom_maximum_size = Vector2(64, 16)
+layout_mode = 2
+size_flags_vertical = 3
+min_value = 0.5
+max_value = 15.0
+step = 0.5
+value = 5.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/EditingSettingsContainer" unique_id=161616353]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_type_variation = &"Spacer"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/EditingSettingsContainer" unique_id=48049953]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2" unique_id=66511294]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Colour"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColourSelectors" type="HBoxContainer" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2" unique_id=1227574096]
+layout_mode = 2
+
+[node name="ColourButton1" type="Button" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=1570135521]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton2" type="Button" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=1139199437]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton3" type="Button" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=146865258]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="ColourButton4" type="Button" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=1244722656]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"ColourPresetButton"
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="CustomColourButtonOverlay1" type="PanelContainer" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=1530501070]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"CustomColourButton"
+
+[node name="ColorPickerButton1" type="ColorPickerButton" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay1" unique_id=2096111394]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"CustomColourButton"
+button_group = SubResource("ButtonGroup_ahevn")
+
+[node name="CustomColourButtonOverlay2" type="PanelContainer" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors" unique_id=1071752541]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"CustomColourButton"
+
+[node name="ColorPickerButton2" type="ColorPickerButton" parent="HBoxContainer/EditingSettingsContainer/VBoxContainer2/ColourSelectors/CustomColourButtonOverlay2" unique_id=1844330736]
+unique_name_in_owner = true
+show_behind_parent = true
+custom_minimum_size = Vector2(16, 16)
+custom_maximum_size = Vector2(16, 16)
+layout_mode = 2
+theme_type_variation = &"CustomColourButton"
+button_group = SubResource("ButtonGroup_ahevn")
+
+[connection signal="toggled" from="HBoxContainer/EditToggleButton" to="." method="_on_edit_toggle_button_toggled"]
+[connection signal="pressed" from="HBoxContainer/ShowButton" to="." method="_on_show_button_pressed"]

@@ -64,5 +64,5 @@ func _on_tab_container_tab_changed(tab: int) -> void:
 	change_tab(tab)
 
 
-func _on_score_selection_widget_score_selected(files: Array) -> void:
+func _on_score_selection_widget_score_selected(files: Array, _group_name, _page_ids) -> void:
 	page_container.current_tab = 1
