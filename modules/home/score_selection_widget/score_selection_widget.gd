@@ -17,7 +17,6 @@ signal score_selected(files: Array, group_name, page_ids)
 func display_imported_scores():
 	print("display_imported_scores() called")
 	print("Import directory: ", Settings.score_directory)
-	var page_ids: PackedStringArray = []
 	
 	for child in imported_scores_container.get_children():
 		child.queue_free()
@@ -32,6 +31,7 @@ func display_imported_scores():
 	print("Found directories: ", directories)
 
 	for dir in directories:
+		var page_ids: PackedStringArray = []
 		print("Processing score: ", dir)
 
 		var rendered_path = Settings.score_directory.path_join(dir).path_join(
@@ -43,6 +43,7 @@ func display_imported_scores():
 		files.sort()
 		for file in files:
 			page_ids.append(file.get_basename())
+		print(page_ids)
 		print("Files found: ", files)
 		
 		var files_with_paths = []

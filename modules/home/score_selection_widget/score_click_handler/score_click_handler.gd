@@ -20,5 +20,4 @@ func _process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	print('Pressed!')
 	emit_signal("score_selected", score_group_name, files, page_ids)

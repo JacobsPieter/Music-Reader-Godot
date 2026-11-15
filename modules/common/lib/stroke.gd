@@ -21,7 +21,7 @@ func add_point(point: Vector2, pressure := 1.0, tilt := Vector2.ZERO) -> void:
 func compress_line() -> void:
 	if points.size() < 3:
 		return
-	var indices := RamerDouglasPeucker.calculate_indices(points, 0.1)
+	var indices := RamerDouglasPeucker.calculate_indices(points, 0.001)
 	points = RamerDouglasPeucker.select_points(points, indices)
 	pressures = PackedFloat64Array(RamerDouglasPeucker.filter_by_indices(pressures, indices))
 	tilts = PackedVector2Array(RamerDouglasPeucker.filter_by_indices(tilts, indices))
@@ -54,8 +54,8 @@ func to_svg() -> String:
 func to_dict() -> Dictionary:
 	var flat_points := []
 	for point in points:
-		flat_points.append(snappedf(point.x, 0.1))
-		flat_points.append(snappedf(point.y, 0.1))
+		flat_points.append(snappedf(point.x, 0.001))
+		flat_points.append(snappedf(point.y, 0.001))
 	var flat_pressures := []
 	for pressure in pressures:
 		flat_pressures.append(snappedf(pressure, 0.001))

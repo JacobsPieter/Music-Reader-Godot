@@ -30,15 +30,15 @@ func change_displayed_page(first_page_nr: int, second_page_nr: int) -> void:
 	if first_page_nr == second_page_nr:
 		splitter.visible = false
 		rendered_single_page_display.visible = true
-		rendered_single_page_display.load_page(page_ids[current_page[0]], rendered_pages[current_page[0]])
 		rendered_single_page_display.group_name = group_name
+		rendered_single_page_display.load_page(page_ids[current_page[0]], rendered_pages[current_page[0]])
 	else:
 		splitter.visible = true
 		rendered_single_page_display.visible = false
-		rendered_first_page_display.load_page(page_ids[current_page[0]], rendered_pages[current_page[0]])
 		rendered_first_page_display.group_name = group_name
-		rendered_second_page_display.load_page(page_ids[current_page[1]], rendered_pages[current_page[1]])
+		rendered_first_page_display.load_page(page_ids[current_page[0]], rendered_pages[current_page[0]])
 		rendered_second_page_display.group_name = group_name
+		rendered_second_page_display.load_page(page_ids[current_page[1]], rendered_pages[current_page[1]])
 
  
 

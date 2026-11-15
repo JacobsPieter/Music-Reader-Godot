@@ -14,6 +14,9 @@ var preset_colours: Array[Color] = [
 	Color.GREEN,
 ]
 
+signal stopped_annotating
+
+
 ## Brush width in page units (the same space the strokes are stored in).
 var brush_width: float:
 	get:
@@ -91,14 +94,17 @@ func _on_show_button_pressed() -> void:
 
 
 func _on_edit_toggle_button_toggled(toggled_on: bool) -> void:
+	Input.use_accumulated_input = not toggled_on
+	OS.low_processor_usage_mode = not toggled_on
 	canvas_parent.annotating = toggled_on
 	showbutton.visible = toggled_on
 	if not toggled_on:
 		editing_settings_container.visible = toggled_on
 		drawing = false
+		stopped_annotating.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch and event.is_released():
+	if event is InputEventScreenTouch and event.is_pressed():
 		if not drawing and editing_settings_container.visible:
 			drawing = true
 			editing_settings_container.visible = false

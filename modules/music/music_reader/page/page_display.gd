@@ -49,6 +49,7 @@ func _ready() -> void:
 
 	resized.connect(_mark_live_dirty)
 	_reset_baked_image()
+	tools.connect("stopped_annotating", _on_stopped_annotating)
 
 
 ## Rasterises the live layer at most once per frame, however many drag events arrived.
@@ -274,7 +275,14 @@ func load_page(new_page_id: String, sheet_music_page_texture: Texture2D) -> void
 
 
 func _read_json(path: String) -> Dictionary:
+	print(path)
 	if not FileAccess.file_exists(path):
+		print("No file found")
 		return {}
-	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var file = FileAccess.open(path, FileAccess.READ)
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
 	return parsed if parsed is Dictionary else {}
+
+
+func _on_stopped_annotating():
+	finish_stroke()
