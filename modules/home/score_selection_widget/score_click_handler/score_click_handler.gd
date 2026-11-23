@@ -3,6 +3,7 @@ extends Button
 
 var score_group_name: String
 var files: PackedStringArray
+var page_ids: PackedStringArray
 
 signal score_selected(score_group_name, files)
 
@@ -19,5 +20,4 @@ func _process(_delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	print('Pressed!')
-	emit_signal("score_selected", score_group_name, files)
+	emit_signal("score_selected", score_group_name, files, page_ids)

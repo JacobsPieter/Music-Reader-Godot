@@ -8,7 +8,7 @@ extends Control
 @onready var score_name_dialog := %ScoreNameDialog
 @onready var name_entering_field := %NameEnter
 
-@onready var import_directory = Settings.import_directory
+@onready var import_directory = Settings.score_directory
 @onready var inner_rendered_page_dir = Settings.inner_rendered_page_directory
 
 

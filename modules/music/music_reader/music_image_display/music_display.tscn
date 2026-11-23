@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://du56lrg2b1ndu"]
 
 [ext_resource type="Script" uid="uid://d3b3bsg1kkqol" path="res://modules/music/music_reader/music_image_display/music_display.gd" id="1_ewayu"]
+[ext_resource type="PackedScene" uid="uid://cmk3xtn4nwfd8" path="res://modules/music/music_reader/annotations/DrawingTools.tscn" id="2_fk5yo"]
+[ext_resource type="PackedScene" uid="uid://de2bfo3xxxo2k" path="res://modules/music/music_reader/page/PageDisplay.tscn" id="3_a7d4l"]
 
 [node name="MusicDisplay" type="Control" unique_id=510292664]
 propagate_maximum_size = true
@@ -15,18 +17,49 @@ size_flags_vertical = 3
 mouse_filter = 1
 script = ExtResource("1_ewayu")
 
-[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=610581220]
-unique_name_in_owner = true
-clip_contents = true
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1913224634]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="DrawingTools" parent="VBoxContainer" unique_id=1804646480 node_paths=PackedStringArray("canvas_parent") instance=ExtResource("2_fk5yo")]
+unique_name_in_owner = true
+layout_mode = 2
+canvas_parent = NodePath("../..")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1329907252]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_type_variation = &"Spacer"
+
+[node name="SinglePageContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer" unique_id=1802060097]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="SinglePageDisplay" parent="VBoxContainer/PanelContainer/SinglePageContainer" unique_id=1500693161 node_paths=PackedStringArray("tools", "app_page") instance=ExtResource("3_a7d4l")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+mouse_filter = 1
+tools = NodePath("../../../DrawingTools")
+app_page = NodePath("../../../..")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="VBoxContainer/PanelContainer" unique_id=610581220]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
 touch_dragger_enabled = true
 
-[node name="FirstPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=243553396]
+[node name="FirstPageContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/VSplitContainer" unique_id=243553396]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -34,15 +67,14 @@ mouse_filter = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="RenderedFirstPageDisplay" type="TextureRect" parent="VSplitContainer/FirstPageContainer" unique_id=2052935530]
+[node name="FirstPageDisplay" parent="VBoxContainer/PanelContainer/VSplitContainer/FirstPageContainer" unique_id=770881754 node_paths=PackedStringArray("tools", "app_page") instance=ExtResource("3_a7d4l")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand_mode = 1
-stretch_mode = 5
+mouse_filter = 1
+tools = NodePath("../../../../DrawingTools")
+app_page = NodePath("../../../../..")
 
-[node name="SecondPageContainer" type="ScrollContainer" parent="VSplitContainer" unique_id=910133447]
+[node name="SecondPageContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/VSplitContainer" unique_id=910133447]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -50,13 +82,12 @@ mouse_filter = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="RenderedSecondPageDisplay" type="TextureRect" parent="VSplitContainer/SecondPageContainer" unique_id=754594924]
+[node name="SecondPageDisplay" parent="VBoxContainer/PanelContainer/VSplitContainer/SecondPageContainer" unique_id=1245483588 node_paths=PackedStringArray("tools", "app_page") instance=ExtResource("3_a7d4l")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand_mode = 1
-stretch_mode = 5
+mouse_filter = 1
+tools = NodePath("../../../../DrawingTools")
+app_page = NodePath("../../../../..")
 
 [node name="VisibilityTimer" type="Timer" parent="." unique_id=837983439]
 unique_name_in_owner = true
@@ -66,5 +97,5 @@ ignore_time_scale = true
 
 [connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
-[connection signal="dragged" from="VSplitContainer" to="." method="_on_v_split_container_dragged"]
+[connection signal="dragged" from="VBoxContainer/PanelContainer/VSplitContainer" to="." method="_on_v_split_container_dragged"]
 [connection signal="timeout" from="VisibilityTimer" to="." method="_on_visibility_timer_timeout"]

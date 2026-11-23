@@ -1058,6 +1058,48 @@ corner_radius_bottom_left = 8
 expand_margin_top = 3.0
 expand_margin_bottom = 3.0
 
+[sub_resource type="StyleBox" id="StyleBox_ystmx"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+script = ExtResource("2_4i1ap")
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+metadata/_custom_type_script = "uid://bkl6g25jwb47h"
+
+[sub_resource type="Resource" id="Resource_3gwnp"]
+script = ExtResource("1_baqgo")
+color = Color(0.10980392, 0.34117648, 0.7294118, 1)
+width_left = 4
+width_top = 4
+width_right = 4
+width_bottom = 4
+inset_left = -1
+inset_top = -1
+inset_right = -1
+inset_bottom = -1
+metadata/_custom_type_script = "uid://cjmmhbp1b5312"
+
+[sub_resource type="StyleBox" id="StyleBox_d4m80"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("2_4i1ap")
+borders = Array[ExtResource("1_baqgo")]([SubResource("Resource_3gwnp")])
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+metadata/_custom_type_script = "uid://bkl6g25jwb47h"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt7g5"]
 bg_color = Color(0.12057198, 0.14299133, 0.1698958, 1)
 corner_radius_top_left = 4
@@ -1097,6 +1139,8 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 shadow_color = Color(0.5568628, 0.6431373, 0.7411765, 0.64705884)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hwtg1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcgbu"]
 bg_color = Color(0.10980392, 0.11764706, 0.12941177, 1)
@@ -1143,6 +1187,13 @@ Button/styles/focus = SubResource("StyleBoxFlat_baqgo")
 Button/styles/hover = SubResource("StyleBoxFlat_4i1ap")
 Button/styles/normal = SubResource("StyleBoxFlat_k7sjl")
 Button/styles/pressed = SubResource("StyleBoxFlat_qdc6n")
+ColourPresetButton/base_type = &"Button"
+ColourPresetButton/styles/focus = SubResource("StyleBox_ystmx")
+ColourPresetButton/styles/hover = SubResource("StyleBox_ystmx")
+ColourPresetButton/styles/normal = SubResource("StyleBox_ystmx")
+ColourPresetButton/styles/pressed = SubResource("StyleBox_d4m80")
+CustomColourButton/base_type = &"PanelContainer"
+CustomColourButton/styles/panel = SubResource("StyleBox_ystmx")
 Panel/styles/panel = SubResource("StyleBoxFlat_wt7g5")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_wt7g5")
 PopupBackPanelContainer/base_type = &"PanelContainer"
@@ -1154,6 +1205,8 @@ PopupMarginContainer/constants/margin_right = 16
 PopupMarginContainer/constants/margin_top = 16
 SelectionCard/base_type = &"PanelContainer"
 SelectionCard/styles/panel = SubResource("StyleBoxFlat_d4m80")
+Spacer/base_type = &"PanelContainer"
+Spacer/styles/panel = SubResource("StyleBoxEmpty_hwtg1")
 TabBar/styles/tab_selected = SubResource("StyleBoxFlat_kcgbu")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_kcgbu")
 TabContainer/constants/tab_separation = 20

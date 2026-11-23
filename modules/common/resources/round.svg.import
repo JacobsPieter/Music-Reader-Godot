@@ -1,0 +1,22 @@
+[remap]
+
+importer="svg"
+type="DPITexture"
+uid="uid://c6lf0vwnoac08"
+path="res://.godot/imported/round.svg-0c9fd759fa48099e76ede59e478f9f5f.dpitex"
+
+[deps]
+
+source_file="res://modules/common/resources/round.svg"
+dest_files=["res://.godot/imported/round.svg-0c9fd759fa48099e76ede59e478f9f5f.dpitex"]
+
+[params]
+
+base_scale=1.0
+saturation=1.0
+color_map={
+Color(1, 1, 1, 1): Color(0, 0, 0, 0)
+}
+fix_alpha_border=true
+premult_alpha=true
+compress=true
