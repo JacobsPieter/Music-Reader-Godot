@@ -39,6 +39,7 @@ var _save_timer: Timer
 @onready var sheet_music_page: TextureRect = %SheetMusicPage
 @onready var baked_layer: TextureRect = %BakedAnnotations
 @onready var live_layer: TextureRect = %LiveAnnotations
+@onready var live_drawn_line := %LiveDrawnLine
 
 
 func _ready() -> void:
@@ -95,6 +96,8 @@ func _begin_stroke() -> void:
 	# Colour and width are captured here, so later tool changes cannot recolour this stroke.
 	current_stroke.colour = tools.get_colour() if tools else Color.BLACK
 	current_stroke.width = tools.brush_width if tools else 2.0
+	live_drawn_line.default_color = current_stroke.colour
+	live_drawn_line.width = current_stroke.width / sheet_music_page.texture.get_size().length() * size.length()
 
 
 ## Compresses the active stroke and bakes it into the page. Safe to call at any time.
@@ -155,15 +158,13 @@ func _update_baked_texture() -> void:
 func _refresh_live() -> void:
 	_live_dirty = false
 	if current_stroke == null or current_stroke.points.size() < 2 or size.x < 1.0 or size.y < 1.0:
-		live_layer.texture = null
+		live_drawn_line.points = []
 		return
+	var global_points = []
+	for point in current_stroke.points:
+		global_points.append(_page_to_global(point))
+	live_drawn_line.points = global_points
 
-	var svg := _svg_document(current_stroke.to_svg(), Rect2(Vector2.ZERO, page_size))
-	if _live_texture == null:
-		_live_texture = DPITexture.create_from_string(svg)
-	else:
-		_live_texture.set_source(svg)
-	live_layer.texture = _live_texture
 
 
 ## An SVG document showing `view` (in page units). The output is view.size pixels.
@@ -201,6 +202,11 @@ func _to_page(local_position: Vector2) -> Vector2:
 			* get_global_transform() * local_position
 	var shown := _displayed_rect()
 	return (in_rect - shown.position) / shown.size * sheet_music_page.texture.get_size()
+
+func _page_to_global(page_position: Vector2) -> Vector2:
+	var shown := _displayed_rect()
+	var in_rect := page_position / sheet_music_page.texture.get_size() * shown.size + shown.position
+	return get_global_transform().translated(-global_position) * in_rect# + get_global_transform().translated(global_position) * in_rect
 
 
 # --- Persistence --------------------------------------------------------------------------

@@ -21,7 +21,7 @@ func add_point(point: Vector2, pressure := 1.0, tilt := Vector2.ZERO) -> void:
 func compress_line() -> void:
 	if points.size() < 3:
 		return
-	var indices := RamerDouglasPeucker.calculate_indices(points, 0.001)
+	var indices := RamerDouglasPeucker.calculate_indices(points, 0.1)
 	points = RamerDouglasPeucker.select_points(points, indices)
 	pressures = PackedFloat64Array(RamerDouglasPeucker.filter_by_indices(pressures, indices))
 	tilts = PackedVector2Array(RamerDouglasPeucker.filter_by_indices(tilts, indices))
@@ -41,13 +41,22 @@ func get_bounds() -> Rect2:
 func to_svg() -> String:
 	if points.size() < 2:
 		return ""
-	var coordinates := PackedStringArray()
-	for point in points:
-		coordinates.append("%.1f,%.1f" % [point.x, point.y])
+	var d := PackedStringArray()
+	d.append("M%.2f,%.2f" % [points[0].x, points[0].y])
+	if points.size() == 2:
+		d.append("L%.2f,%.2f" % [points[1].x, points[1].y])
+	else:
+		var first_mid := points[0].lerp(points[1], 0.5)
+		d.append("L%.2f,%.2f" % [first_mid.x, first_mid.y])
+		for i in range(1, points.size() - 1):
+			var mid := points[i].lerp(points[i + 1], 0.5)
+			d.append("Q%.2f,%.2f %.2f,%.2f" % [points[i].x, points[i].y, mid.x, mid.y])
+		var last := points[points.size() - 1]
+		d.append("L%.2f,%.2f" % [last.x, last.y])
 	return (
-		'<polyline points="%s" fill="none" stroke="#%s" stroke-opacity="%.3f" '
+		'<path d="%s" fill="none" stroke="#%s" stroke-opacity="%.3f" '
 		+ 'stroke-width="%.2f" stroke-linecap="round" stroke-linejoin="round"/>'
-	) % [" ".join(coordinates), colour.to_html(false), colour.a, width]
+	) % [" ".join(d), colour.to_html(false), colour.a, width]
 
 
 ## Plain Dictionary/Array data only, so JSON.stringify can write it directly.
